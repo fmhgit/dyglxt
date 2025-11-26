@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "wrangler dev src/index.ts",
         "deploy": "wrangler deploy --minify src/index.ts",
-        "build:pages": "esbuild src/index.ts --bundle --format=esm --platform=browser --outfile=../frontend/dist/_worker.js --external:drizzle-orm --external:lunar-javascript",
+        "build:pages": "esbuild src/index.ts --bundle --format=esm --platform=browser --outfile=../frontend/dist/_worker.js --external:node:* --conditions=workerd,worker,browser",
         "cf-typegen": "wrangler types --env-interface CloudflareBindings"
     },
     "dependencies": {
