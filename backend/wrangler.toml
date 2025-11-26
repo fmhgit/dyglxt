@@ -8,7 +8,7 @@ JWT_SECRET = "replace-with-strong-random-string"
 [[d1_databases]]
 binding = "DB"
 database_name = "subscription-db"
-database_id = "to-be-replaced-after-creation"
+database_id = "cd5cfb0f-8c52-43f4-a8b6-1811b5e0a1ef"
 
 [assets]
 binding = "ASSETS"
