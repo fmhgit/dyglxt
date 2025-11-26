@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Calendar, Settings, LogOut, Plus } from 'lucide-react';
+import { Calendar, Settings, LogOut } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -41,8 +41,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                         key={item.path}
                                         to={item.path}
                                         className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === item.path
-                                                ? 'text-blue-600 bg-blue-50'
-                                                : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                                            ? 'text-blue-600 bg-blue-50'
+                                            : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
                                             }`}
                                     >
                                         <div className="flex items-center space-x-2">
