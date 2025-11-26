@@ -6,10 +6,10 @@ import { users } from '../db/schema';
 import { hashPassword, verifyPassword } from '../utils/crypto';
 
 const app = new Hono<{ Bindings: Env }>();
-const JWT_SECRET = 'your-secret-key-change-this'; // In prod, use env var
 
 app.post('/setup', async (c) => {
     const db = createDb(c.env.DB);
+    const JWT_SECRET = c.env.JWT_SECRET || 'fallback-secret-change-in-prod';
     const { username, password } = await c.req.json();
 
     const existingUsers = await db.select().from(users).limit(1);
@@ -28,6 +28,7 @@ app.post('/setup', async (c) => {
 
 app.post('/login', async (c) => {
     const db = createDb(c.env.DB);
+    const JWT_SECRET = c.env.JWT_SECRET || 'fallback-secret-change-in-prod';
     const { username, password } = await c.req.json();
 
     const user = await db.select().from(users).where(eq(users.username, username)).get();
@@ -40,6 +41,7 @@ app.post('/login', async (c) => {
 });
 
 app.get('/me', async (c) => {
+    const JWT_SECRET = c.env.JWT_SECRET || 'fallback-secret-change-in-prod';
     const authHeader = c.req.header('Authorization');
     if (!authHeader) return c.json({ error: 'Unauthorized' }, 401);
 

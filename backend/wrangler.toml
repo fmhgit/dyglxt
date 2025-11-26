@@ -2,7 +2,8 @@ name = "subscription-manager"
 compatibility_date = "2024-11-01"
 
 [vars]
-# Environment variables
+# Environment variables - 将在Cloudflare Pages中配置
+JWT_SECRET = "replace-with-strong-random-string"
 
 [[d1_databases]]
 binding = "DB"

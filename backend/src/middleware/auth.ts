@@ -1,9 +1,8 @@
 import { createMiddleware } from 'hono/factory';
 import { verify } from 'hono/jwt';
 
-const JWT_SECRET = 'your-secret-key-change-this'; // In prod, use env var
-
 export const authMiddleware = createMiddleware(async (c, next) => {
+    const JWT_SECRET = c.env.JWT_SECRET || 'fallback-secret-change-in-prod';
     const authHeader = c.req.header('Authorization');
     if (!authHeader) {
         return c.json({ error: 'Unauthorized' }, 401);
